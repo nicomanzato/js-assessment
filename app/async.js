@@ -8,11 +8,20 @@ exports.asyncAnswers = {
   },
 
   manipulateRemoteData: function(url) {
-    /*
+
+    const getNameFromPeople = (people) => {
+      let newArr = [];
+      for(person in people){
+        newArr.push(people[person].name);
+      }
+      return newArr;
+    }
+
     let promise = fetch(url)
                     .then(resp => resp.json())
-                    .then(data => data.sort());
+                    .then(data => { return getNameFromPeople(data.people).sort(); });
+
     return promise;
-    */
+
   }
 };

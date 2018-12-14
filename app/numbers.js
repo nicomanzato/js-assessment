@@ -3,7 +3,27 @@ exports = typeof window === 'undefined' ? global : window;
 exports.numbersAnswers = {
   valueAtBit: function(num, bit) {
     // FROM ANSWERS
-    return 1 & (num >> (bit - 1));
+    //return 1 & (num >> (bit - 1));
+
+    //FROM convertToBinary
+    const decimalToBinary = (num) => {
+      let base = 1;
+      let base2 = '';
+      let digit;
+
+      while(num > 0) {
+        digit = ((num % 2) === 0 ? '0' : '1');
+        num = Math.floor(num/2);
+        base2 = digit.concat(base2);
+      }
+
+      while(base2.length < 8) base2 = '0'.concat(base2);
+
+      return base2;
+    }
+    let result = decimalToBinary(num);
+    return +result[8-bit];
+
   },
 
   base10: function(str) {
@@ -33,5 +53,6 @@ exports.numbersAnswers = {
   },
 
   multiply: function(a, b) {
+    return +(a*b).toPrecision(10);
   }
 };
